@@ -5,3 +5,7 @@
 .logo {
   width: 7em;
 }
+.blind-header {
+  width: 100%;
+  display: flex;
+}
