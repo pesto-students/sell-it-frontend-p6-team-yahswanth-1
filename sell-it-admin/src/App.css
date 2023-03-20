@@ -39,6 +39,15 @@
   margin-top: 12px;
   color: rgba(0, 0, 0, 0.87);
 }
+.nav-button:hover {
+  padding: 8px 16px 8px 16px;
+  text-decoration: none;
+  display: flex;
+  justify-items: center;
+  margin-top: 12px;
+  background: #2f81ed0e;
+  color: rgba(66, 63, 63, 0.87);
+}
 .nav-button.active {
   background: #2f81ed2d;
   border-radius: 4px;
@@ -57,9 +66,60 @@
   margin-left: 30px;
   margin-top: 16px;
   background-color: #ffffff;
+  margin-right: 16px;
+  padding: 12px;
+  border-radius: 14px;
 }
 .content-area {
   display: flex;
   flex-direction: row;
   border-radius: 14px;
+}
+.h-row {
+  width: 100%;
+  text-align: center;
+  height: 2px;
+  background-color: #1c64f2;
+  justify-content: center;
+}
+
+.blind-header {
+  display: flex;
+  flex-direction: column;
+}
+.login-page {
+  display: flex;
+}
+.login-heading {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 44px;
+  margin-left: 40px;
+  color: #564948;
+}
+.ml-10 {
+  margin-left: 100px;
+}
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.label-input {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+
+  color: #1c64f2;
+}
+.mt-2 {
+  margin-top: 12px;
+}
+.login-image {
+  margin-top: 102px;
+  margin-left: 120px;
+  width: 60%;
+  height: 60%;
 }
