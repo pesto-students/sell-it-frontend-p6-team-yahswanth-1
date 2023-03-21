@@ -4,6 +4,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Badge from "@mui/material/Badge";
+import { Link } from "react-router-dom";
+import Popover from "@mui/material/Popover";
+import Typography from "@mui/material/Typography";
 
 import { Profile } from "../reusable";
 import Logo from "../../assets/img/logo.png";
@@ -48,10 +51,25 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 export const Header = () => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
   return (
     <div className="header">
       <Profile />
-      <img src={Logo} alt="logo" className="logo" />
+      <Link to={"/"}>
+        <img src={Logo} alt="logo" className="logo" />
+      </Link>
+
       <Search
         sx={{
           marginLeft: 10,
@@ -77,8 +95,28 @@ export const Header = () => {
           }}
           color="primary"
         >
-          <NotificationsIcon color="action" />
+          <NotificationsIcon
+            sx={{
+              cursor: "pointer",
+            }}
+            color="action"
+            aria-describedby={id}
+            variant="contained"
+            onClick={handleClick}
+          />
         </Badge>
+        <Popover
+          id={id}
+          open={open}
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
+        >
+          <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
+        </Popover>
       </div>
     </div>
   );

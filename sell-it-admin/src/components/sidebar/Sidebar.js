@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Home, Dashboard, Group } from "@mui/icons-material";
 
 import { NavButton } from "./NavButton";
@@ -21,16 +21,22 @@ const routes = [
 ];
 
 const Sidebar = () => {
+  const [selectedTab, setSelectedTab] = useState(0);
+  const onTabChange = (tab) => {
+    setSelectedTab(tab);
+  };
   return (
     <div className="sidebar">
-      {routes.map(({ title, active, url, Icon }) => {
+      {routes.map(({ title, active, url, Icon }, index) => {
         return (
           <NavButton
             key={title}
             title={title}
             url={url}
-            active={active}
+            active={index === selectedTab}
             Icon={Icon}
+            onTabChange={onTabChange}
+            id={index}
           />
         );
       })}
