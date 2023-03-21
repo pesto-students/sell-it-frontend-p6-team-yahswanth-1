@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import toast from "react-hot-toast";
 
 import { login as loginApi } from "../../api";
 import FormControl from "@mui/material/FormControl";
@@ -18,12 +19,17 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [disable, setDisable] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const login = () => {
     loginApi(email, password)
       .then((res) => {
         console.log(res);
+        toast.success("Success");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        toast.error(err.message);
+      });
   };
   const onChangeEmail = (val) => {
     setEmail(val);
@@ -31,6 +37,8 @@ const Login = () => {
   const onChangePassword = (val) => {
     setPassword(val);
   };
+
+  const onCheck = (e) => {};
 
   useEffect(() => {
     if (email && password) {
@@ -84,12 +92,12 @@ const Login = () => {
                 />
               </FormControl>
             </div>
-            <div className="mt-2">
+            {/* <div className="mt-2">
               <Link to={"/forgot-password"}>Forgot password ?</Link>
-            </div>
+            </div> */}
             <FormGroup>
               <FormControlLabel
-                control={<Checkbox defaultChecked />}
+                control={<Checkbox checked={rememberMe} onChange={onCheck} />}
                 label="Remember me"
               />
             </FormGroup>
