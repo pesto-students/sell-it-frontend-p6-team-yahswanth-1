@@ -3,7 +3,7 @@ import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -16,6 +16,7 @@ import { Button } from "@mui/material";
 import Loginwindow from "../../assets/img/login.svg";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [disable, setDisable] = useState(false);
@@ -23,8 +24,10 @@ const Login = () => {
   const login = () => {
     loginApi(email, password)
       .then((res) => {
-        console.log(res);
+        const data = res.data.response;
+        localStorage.setItem("admin", JSON.stringify(data));
         toast.success("Success");
+        navigate("/");
       })
       .catch((err) => {
         console.log(err);
@@ -47,6 +50,14 @@ const Login = () => {
       setDisable(true);
     }
   }, [email, password]);
+
+  useEffect(() => {
+    const login = JSON.parse(localStorage.getItem("admin"));
+    alert(1);
+    if (login) {
+      navigate("/");
+    }
+  }, []);
   return (
     <div className="login-page">
       <div>

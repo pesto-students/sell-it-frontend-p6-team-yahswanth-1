@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const client = axios.create({
-  baseURL: process.env.BACKEND_URL || "http://sell-it.onrender.com/api/v1",
+  baseURL: process.env.BACKEND_URL || "https://sell-it.onrender.com/api/v1",
 });
