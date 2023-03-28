@@ -4,6 +4,7 @@ import Table from "../../components/table";
 import { pendingProducts } from "../../api/products";
 import { Typography } from "@mui/material";
 import BidCard from "../../components/reusable/BidCard";
+import { Grid } from "@mui/material";
 
 import Empty from "../../assets/img/undraw_Sunlight.png";
 
@@ -20,11 +21,26 @@ const Home = () => {
   return (
     <div>
       <Typography>Pending bids</Typography>
-      <div>
+      <div className="mt-2">
         {pendingBids.length > 0 ? (
-          pendingBids.map((bid) => {
-            return <BidCard />;
-          })
+          <Grid container spacing={2}>
+            {pendingBids.map((bid) => {
+              return (
+                <Grid item xs={6}>
+                  <BidCard
+                    userId={bid?.createdByDetails?._id}
+                    name={bid?.title}
+                    description={bid?.description}
+                    image={bid?.images[0]?.uri}
+                    category={bid?.category?.name}
+                    createdAt={bid?.createdAt}
+                    createdBy={bid?.createdByDetails?.name}
+                    createdByEmail={bid?.createdByDetails?.email}
+                  />
+                </Grid>
+              );
+            })}
+          </Grid>
         ) : (
           <div>
             <img src={Empty} className="no-bid" alt="no bids found" />

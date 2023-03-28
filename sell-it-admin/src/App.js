@@ -12,6 +12,7 @@ import BidManagmentPage from "./pages/bid-managment";
 import { BlindHeader } from "./components/header/BlindHeader";
 import { BlindFooter } from "./components/footer/BlindFooter";
 import PrivateRoute from "./routes";
+import CategoryManagmentPage from "./pages/category-managment";
 
 const Home = () => {
   return (
@@ -70,6 +71,18 @@ const BidManagment = () => {
   );
 };
 
+const CategoryManagment = () => {
+  return (
+    <>
+      <div>
+        <Layout>
+          <CategoryManagmentPage />
+        </Layout>
+      </div>
+    </>
+  );
+};
+
 function App() {
   const [login, setLogin] = useState(false);
 
@@ -88,10 +101,19 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route exact path="/" element={<PrivateRoute isLoggedIn={login} />}>
           <Route exact path="/" element={<Home />} />
+          <Route path="/user-managment" element={<UserManagment />}></Route>
+          <Route path="/dashboard" element={<Dashboard />}></Route>
+          <Route path="/bid-managment" element={<BidManagment />}></Route>
+          <Route
+            path="/user-details/:userId"
+            element={<BidManagment />}
+          ></Route>
+          <Route path="/bid-details/:bidId" element={<BidManagment />}></Route>
+          <Route
+            path="/category-managment"
+            element={<CategoryManagment />}
+          ></Route>
         </Route>
-        <Route path="/user-managment" element={<UserManagment />}></Route>
-        <Route path="/dashboard" element={<Dashboard />}></Route>
-        <Route path="/bid-managment" element={<BidManagment />}></Route>
       </Routes>
       <Toaster />
     </BrowserRouter>

@@ -18,6 +18,12 @@ const routes = [
     active: false,
     Icon: <Dashboard />,
   },
+  {
+    title: "Category management",
+    url: "/category-managment",
+    active: false,
+    Icon: <Dashboard />,
+  },
 ];
 
 const Sidebar = () => {

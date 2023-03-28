@@ -11,3 +11,14 @@ export const pendingProducts = async () => {
   });
   return response;
 };
+
+export const getCategoryListing = async () => {
+  const response = await client.get("/products/categories", {
+    headers: {
+      accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      ...authHead,
+    },
+  });
+  return response;
+};

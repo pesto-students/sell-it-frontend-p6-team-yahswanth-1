@@ -1,14 +1,15 @@
 import React from "react";
-
+import { Box } from "@mui/material";
 import PendingBids from "./PendingBid";
 
 const Home = () => {
   return (
     <>
       <div>
-        <div>
+        <Box>
           <PendingBids />
-        </div>
+        </Box>
+
         <div></div>
       </div>
     </>
