@@ -12,11 +12,13 @@ import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import { blockUserById } from "../../api/users";
 import { toast } from "react-hot-toast";
-
+import { getUserById } from "../../api/users";
+import { UserDetailsModal } from "../modal/UserDetailsModal";
 const columns = [
   { id: "name", label: "Name", minWidth: 170 },
   { id: "email", label: "Email", minWidth: 100 },
   { id: "createdAt", label: "Created", minWidth: 100 },
+  { id: "details", label: "View Details", minWidth: 100 },
   {
     id: "block",
     label: "Block/Unblock",
@@ -24,8 +26,8 @@ const columns = [
   },
 ];
 
-function createData(name, email, createdAt, block) {
-  return { name, email, block, createdAt };
+function createData(name, email, createdAt, block, details) {
+  return { name, email, block, createdAt, details };
 }
 
 export default function StickyHeadTable(props) {
@@ -35,6 +37,8 @@ export default function StickyHeadTable(props) {
   const [selectedUser, setSelectedUser] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
   const [reason, setReason] = useState("");
+  const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
+  const [userDetails, setUserDetails] = useState({});
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -53,6 +57,16 @@ export default function StickyHeadTable(props) {
     setAnchorEl(null);
     setSelectedUser(null);
   };
+
+  const viewUser = (userId) => {
+    getUserById(userId)
+      .then((res) => {
+        setShowUserDetailsModal(true);
+        setUserDetails(res.data?.response?.user?.user);
+      })
+      .catch((err) => console.log(err));
+  };
+
   const rows = data.map((user) =>
     createData(
       user.accountHolderName,
@@ -61,9 +75,18 @@ export default function StickyHeadTable(props) {
       <Button
         variant="outlined"
         color="secondary"
+        size="small"
         onClick={(e) => blockUser(e, user._id)}
       >
         Block
+      </Button>,
+      <Button
+        variant="contained"
+        color="primary"
+        size="small"
+        onClick={() => viewUser(user._id)}
+      >
+        View details
       </Button>
     )
   );
@@ -84,6 +107,11 @@ export default function StickyHeadTable(props) {
   const id = open ? "simple-popover" : undefined;
   return (
     <>
+      <UserDetailsModal
+        open={showUserDetailsModal}
+        handleClose={() => setShowUserDetailsModal(false)}
+        data={userDetails}
+      />
       <Paper sx={{ width: "100%", overflow: "hidden" }}>
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table">

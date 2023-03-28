@@ -1,11 +1,17 @@
 import React from "react";
-import Table from "../../components/table";
+
+import PendingBids from "./PendingBid";
 
 const Home = () => {
   return (
-    <div>
-      <Table />
-    </div>
+    <>
+      <div>
+        <div>
+          <PendingBids />
+        </div>
+        <div></div>
+      </div>
+    </>
   );
 };
 
