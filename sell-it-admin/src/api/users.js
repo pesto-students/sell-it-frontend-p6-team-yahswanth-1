@@ -22,3 +22,14 @@ export const getUserById = async (userId) => {
   });
   return response;
 };
+
+export const blockUserById = async (body) => {
+  const response = await client.post(`/admin/users/block`, body, {
+    headers: {
+      accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      ...authHead,
+    },
+  });
+  return response;
+};
