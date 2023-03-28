@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Badge from "@mui/material/Badge";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
+import { Menu, MenuItem } from "@mui/material";
 
 import { Profile } from "../reusable";
 import Logo from "../../assets/img/logo.png";
@@ -51,21 +52,40 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 export const Header = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchor, setAnchor] = useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const showProfile = (event) => {
+    setAnchor(event.currentTarget);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
   };
 
+  const handleProfileClose = () => {
+    setAnchor(null);
+  };
+
+  const logout = () => {
+    localStorage.removeItem("admin");
+    navigate("/login");
+  };
+
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
+  const openProfile = Boolean(anchor);
+  const pid = openProfile ? "profile" : undefined;
   return (
     <div className="header">
-      <Profile />
+      <div role="button" onClick={showProfile}>
+        <Profile />
+      </div>
       <Link to={"/"}>
         <img src={Logo} alt="logo" className="logo" />
       </Link>
@@ -117,6 +137,17 @@ export const Header = () => {
         >
           <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
         </Popover>
+        <Menu
+          id={pid}
+          anchorEl={anchor}
+          open={openProfile}
+          onClose={handleProfileClose}
+          MenuListProps={{
+            "aria-labelledby": "basic-button",
+          }}
+        >
+          <MenuItem onClick={logout}>Logout</MenuItem>
+        </Menu>
       </div>
     </div>
   );

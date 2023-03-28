@@ -6,6 +6,7 @@ export const Profile = () => {
     <Avatar
       sx={{
         margin: "10px",
+        cursor: "pointer",
       }}
       alt="Remy Sharp"
       src="/static/images/avatar/1.jpg"

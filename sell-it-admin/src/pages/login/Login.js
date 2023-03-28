@@ -53,7 +53,6 @@ const Login = () => {
 
   useEffect(() => {
     const login = JSON.parse(localStorage.getItem("admin"));
-    alert(1);
     if (login) {
       navigate("/");
     }
