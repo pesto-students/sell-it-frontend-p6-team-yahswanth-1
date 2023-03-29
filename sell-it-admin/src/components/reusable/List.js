@@ -34,14 +34,14 @@ export default function CheckboxListSecondary({ list }) {
         return (
           <ListItem
             key={value}
-            secondaryAction={
-              <Checkbox
-                edge="end"
-                onChange={handleToggle(value.name)}
-                checked={checked.indexOf(value.name) !== -1}
-                inputProps={{ "aria-labelledby": labelId }}
-              />
-            }
+            // secondaryAction={
+            //   <Checkbox
+            //     edge="end"
+            //     onChange={handleToggle(value.name)}
+            //     checked={checked.indexOf(value.name) !== -1}
+            //     inputProps={{ "aria-labelledby": labelId }}
+            //   />
+            // }
             disablePadding
           >
             <ListItemButton>

@@ -76,6 +76,7 @@ a {
   margin-right: 16px;
   padding: 12px;
   border-radius: 14px;
+  width: 80%;
 }
 .content-area {
   display: flex;
@@ -136,4 +137,14 @@ a {
 .no-bid {
   width: 40%;
   height: 40%;
+}
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }

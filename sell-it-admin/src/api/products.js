@@ -22,3 +22,25 @@ export const getCategoryListing = async () => {
   });
   return response;
 };
+
+export const getAllProducts = async () => {
+  const response = await client.get("/products", {
+    headers: {
+      accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      ...authHead,
+    },
+  });
+  return response;
+};
+
+export const getProductById = async (id) => {
+  const response = await client.get(`/products/${id}`, {
+    headers: {
+      accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      ...authHead,
+    },
+  });
+  return response;
+};

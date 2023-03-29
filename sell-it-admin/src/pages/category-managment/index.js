@@ -39,9 +39,9 @@ const CategoryManagmentPage = () => {
         <Typography>All Categories</Typography>
 
         <List list={allCategories} />
-        <Button variant="contained" onClick={handleClickOpen}>
+        {/* <Button variant="contained" onClick={handleClickOpen}>
           Add new category
-        </Button>
+        </Button> */}
       </div>
       <Dialog
         open={open}

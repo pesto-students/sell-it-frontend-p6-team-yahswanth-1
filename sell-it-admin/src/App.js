@@ -13,6 +13,7 @@ import { BlindHeader } from "./components/header/BlindHeader";
 import { BlindFooter } from "./components/footer/BlindFooter";
 import PrivateRoute from "./routes";
 import CategoryManagmentPage from "./pages/category-managment";
+import BidDetails from "./pages/bid-managment/BidDetails";
 
 const Home = () => {
   return (
@@ -83,6 +84,18 @@ const CategoryManagment = () => {
   );
 };
 
+const BidDetailsPage = () => {
+  return (
+    <>
+      <div>
+        <Layout>
+          <BidDetails />
+        </Layout>
+      </div>
+    </>
+  );
+};
+
 function App() {
   const [login, setLogin] = useState(false);
 
@@ -108,7 +121,10 @@ function App() {
             path="/user-details/:userId"
             element={<BidManagment />}
           ></Route>
-          <Route path="/bid-details/:bidId" element={<BidManagment />}></Route>
+          <Route
+            path="/bid-details/:bidId"
+            element={<BidDetailsPage />}
+          ></Route>
           <Route
             path="/category-managment"
             element={<CategoryManagment />}

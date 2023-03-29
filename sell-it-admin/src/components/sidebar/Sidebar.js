@@ -9,7 +9,7 @@ import { NavButton } from "./NavButton";
 
 const routes = [
   { title: "Home", url: "/", active: true, Icon: <Home /> },
-  { title: "Dashboard", url: "/dashboard", active: false, Icon: <Dashboard /> },
+  // { title: "Dashboard", url: "/dashboard", active: false, Icon: <Dashboard /> },
   {
     title: "User management",
     url: "/user-managment",

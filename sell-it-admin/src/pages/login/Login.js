@@ -13,7 +13,7 @@ import { LoadingButton } from "@mui/lab";
 import { login as loginApi } from "../../api";
 import FormControl from "@mui/material/FormControl";
 import FilledInput from "@mui/material/FilledInput";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import Loginwindow from "../../assets/img/login.svg";
 
 const Login = () => {
@@ -69,7 +69,16 @@ const Login = () => {
   return (
     <div className="login-page">
       <div>
-        <h2 className="login-heading">Sell your product , any time</h2>
+        <Typography
+          variant="h5"
+          sx={{
+            marginLeft: 10,
+            marginTop: 2,
+          }}
+        >
+          Sell your product , any time
+        </Typography>
+
         <div className="ml-10">
           <h4>Admin Login</h4>
           <div className="flex flex-col">
@@ -120,16 +129,17 @@ const Login = () => {
                 label="Remember me"
               />
             </FormGroup>
-            {/* <LoadingButton
+            <LoadingButton
               sx={{
                 marginTop: 2,
               }}
               variant="contained"
               onClick={login}
               disabled={disable}
+              loading={buttonLoading}
             >
               Login
-            </LoadingButton> */}
+            </LoadingButton>
           </div>
         </div>
       </div>
