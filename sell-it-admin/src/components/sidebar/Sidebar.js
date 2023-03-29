@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Home, Dashboard, Group } from "@mui/icons-material";
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import CategoryIcon from "@mui/icons-material/Category";
+
+import { useLocation } from "react-router-dom";
 
 import { NavButton } from "./NavButton";
 
@@ -16,21 +20,26 @@ const routes = [
     title: "Bid management",
     url: "/bid-managment",
     active: false,
-    Icon: <Dashboard />,
+    Icon: <LocalOfferIcon />,
   },
   {
     title: "Category management",
     url: "/category-managment",
     active: false,
-    Icon: <Dashboard />,
+    Icon: <CategoryIcon />,
   },
 ];
 
 const Sidebar = () => {
+  const location = useLocation();
   const [selectedTab, setSelectedTab] = useState(0);
-  const onTabChange = (tab) => {
-    setSelectedTab(tab);
-  };
+
+  useEffect(() => {
+    const curPath = window.location.pathname.split("/")[1];
+    const activeItem = routes.findIndex((item) => item.url === `/${curPath}`);
+    console.log(activeItem);
+    setSelectedTab(curPath.length === 0 ? 0 : activeItem);
+  }, [location]);
   return (
     <div className="sidebar">
       {routes.map(({ title, active, url, Icon }, index) => {
@@ -41,7 +50,6 @@ const Sidebar = () => {
             url={url}
             active={index === selectedTab}
             Icon={Icon}
-            onTabChange={onTabChange}
             id={index}
           />
         );

@@ -21,7 +21,13 @@ const Home = () => {
   return (
     <div>
       <Typography>Pending bids</Typography>
-      <div className="mt-2">
+      <div
+        className="mt-2"
+        style={{
+          overflowY: "auto",
+          maxHeight: "76vh",
+        }}
+      >
         {pendingBids.length > 0 ? (
           <Grid container spacing={2}>
             {pendingBids.map((bid) => {
@@ -36,6 +42,7 @@ const Home = () => {
                     createdAt={bid?.createdAt}
                     createdBy={bid?.createdByDetails?.name}
                     createdByEmail={bid?.createdByDetails?.email}
+                    bidId={bid?._id}
                   />
                 </Grid>
               );

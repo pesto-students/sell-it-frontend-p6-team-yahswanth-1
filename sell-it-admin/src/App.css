@@ -1,3 +1,7 @@
+a {
+  text-decoration: none;
+}
+
 .header {
   display: flex;
   flex-direction: row;
@@ -24,12 +28,14 @@
   top: 0;
   left: 0;
   width: 256px;
-  height: 100%;
   background-color: #ffffff;
   padding: 20px;
   margin-left: 14px;
   margin-top: 16px;
   border-radius: 14px;
+  min-width: 256px;
+  max-height: 80vh;
+  height: 60vh;
 }
 .nav-button {
   padding: 8px 16px 8px 16px;
@@ -38,6 +44,7 @@
   justify-items: center;
   margin-top: 12px;
   color: rgba(0, 0, 0, 0.87);
+  cursor: pointer;
 }
 .nav-button:hover {
   padding: 8px 16px 8px 16px;

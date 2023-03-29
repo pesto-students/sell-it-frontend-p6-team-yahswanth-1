@@ -16,6 +16,7 @@ export default function BidCard({
   category,
   createdBy,
   userId,
+  bidId,
 }) {
   const User = () => {
     console.log({ userId });
@@ -41,7 +42,9 @@ export default function BidCard({
         </Grid>
       </CardContent>
       <CardActions>
-        <Button size="small">View more</Button>
+        <Link to={`/bid-details/${bidId}`}>
+          <Button size="small">View details</Button>
+        </Link>
       </CardActions>
     </Card>
   );

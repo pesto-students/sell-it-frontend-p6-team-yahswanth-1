@@ -8,6 +8,7 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import toast from "react-hot-toast";
+import { LoadingButton } from "@mui/lab";
 
 import { login as loginApi } from "../../api";
 import FormControl from "@mui/material/FormControl";
@@ -21,7 +22,10 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [disable, setDisable] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [buttonLoading, setButtonLoading] = useState(false);
+
   const login = () => {
+    setButtonLoading(true);
     loginApi(email, password)
       .then((res) => {
         const data = res.data.response;
@@ -32,6 +36,9 @@ const Login = () => {
       .catch((err) => {
         console.log(err);
         toast.error(err.message);
+      })
+      .finally(() => {
+        setButtonLoading(false);
       });
   };
   const onChangeEmail = (val) => {
@@ -41,7 +48,9 @@ const Login = () => {
     setPassword(val);
   };
 
-  const onCheck = (e) => {};
+  const onCheck = (e) => {
+    setRememberMe((old) => !old);
+  };
 
   useEffect(() => {
     if (email && password) {
@@ -111,7 +120,7 @@ const Login = () => {
                 label="Remember me"
               />
             </FormGroup>
-            <Button
+            {/* <LoadingButton
               sx={{
                 marginTop: 2,
               }}
@@ -120,7 +129,7 @@ const Login = () => {
               disabled={disable}
             >
               Login
-            </Button>
+            </LoadingButton> */}
           </div>
         </div>
       </div>
