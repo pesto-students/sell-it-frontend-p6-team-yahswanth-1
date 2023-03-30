@@ -5,13 +5,7 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Typography from "@mui/material/Typography";
 
-const steps = [
-  "Select campaign settings",
-  "Create an ad group",
-  "Create an ad",
-];
-
-export default function HorizontalStepperWithError() {
+export default function HorizontalStepperWithError(props) {
   const isStepFailed = (step) => {
     return step === 1;
   };
@@ -19,7 +13,7 @@ export default function HorizontalStepperWithError() {
   return (
     <Box sx={{ width: "100%" }}>
       <Stepper activeStep={1}>
-        {steps.map((label, index) => {
+        {props.history.map((label, index) => {
           const labelProps = {};
           if (isStepFailed(index)) {
             labelProps.optional = (
@@ -32,8 +26,8 @@ export default function HorizontalStepperWithError() {
           }
 
           return (
-            <Step key={label}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
+            <Step key={label._id}>
+              <StepLabel {...labelProps}>{label._id}</StepLabel>
             </Step>
           );
         })}

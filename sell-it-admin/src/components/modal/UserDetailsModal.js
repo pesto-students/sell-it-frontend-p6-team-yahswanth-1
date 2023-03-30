@@ -6,6 +6,8 @@ import Modal from "@mui/material/Modal";
 import PropTypes from "prop-types";
 import { Grid } from "@mui/material";
 
+import VerticalTabs from "../reusable/VerticalTabs";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -16,6 +18,7 @@ const style = {
   boxShadow: 24,
   p: 4,
   borderRadius: 4,
+  height: 400,
 };
 export const UserDetailsModal = ({ open, handleClose, data }) => {
   const {
@@ -45,29 +48,13 @@ export const UserDetailsModal = ({ open, handleClose, data }) => {
     UPI,
   } = data;
 
-  return (
-    <Modal
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
-      <Box sx={style}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <Typography variant="h6" gutterBottom>
-              User Details
-            </Typography>
-          </Grid>
-        </Grid>
-        <Box
-          style={{
-            overflowY: "auto",
-            maxHeight: "76vh",
-          }}
-        >
+  const tabs = [
+    {
+      label: "Personal details",
+      component: (
+        <Box>
           <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid item xs={4}>
               <Typography variant="subtitle1">Name:</Typography>
               <Typography variant="body1">{name}</Typography>
             </Grid>
@@ -123,13 +110,32 @@ export const UserDetailsModal = ({ open, handleClose, data }) => {
               <Typography variant="subtitle1">Customer ID:</Typography>
               <Typography variant="body1">{customerId}</Typography>
             </Grid>
-            <Grid item xs={6}>
-              <Button variant="outlined" onClick={handleClose}>
-                Close
-              </Button>
-            </Grid>
           </Grid>
         </Box>
+      ),
+    },
+    {
+      label: "Bank details",
+      component: <></>,
+    },
+  ];
+
+  return (
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box sx={style}>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <Typography variant="h6" gutterBottom>
+              User Details
+            </Typography>
+          </Grid>
+        </Grid>
+        <VerticalTabs tabs={tabs} />
       </Box>
     </Modal>
   );

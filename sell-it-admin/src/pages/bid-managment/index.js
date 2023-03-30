@@ -65,6 +65,7 @@ const Index = () => {
 
   return (
     <div>
+      <Typography variant="h5">Bid Management</Typography>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
