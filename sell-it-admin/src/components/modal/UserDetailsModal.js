@@ -13,11 +13,9 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 600,
   bgcolor: "background.paper",
-  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
-  overflowY: "auto",
-  maxHeight: "80%",
+  borderRadius: 4,
 };
 export const UserDetailsModal = ({ open, handleClose, data }) => {
   const {
@@ -61,68 +59,77 @@ export const UserDetailsModal = ({ open, handleClose, data }) => {
               User Details
             </Typography>
           </Grid>
-          <Grid item xs={6}>
-            <Typography variant="subtitle1">Name:</Typography>
-            <Typography variant="body1">{name}</Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography variant="subtitle1">Email:</Typography>
-            <Typography variant="body1">{email}</Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography variant="subtitle1">Role:</Typography>
-            <Typography variant="body1">{role}</Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography variant="subtitle1">Mobile:</Typography>
-            <Typography variant="body1">{mobile}</Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography variant="subtitle1">Identity Proof Image:</Typography>
-            <Typography variant="body1">{identityProofImageUri}</Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography variant="subtitle1">Address Line 1:</Typography>
-            <Typography variant="body1">{addressLine1}</Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography variant="subtitle1">Landmark:</Typography>
-            <Typography variant="body1">{landmark}</Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography variant="subtitle1">City:</Typography>
-            <Typography variant="body1">{city}</Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography variant="subtitle1">State:</Typography>
-            <Typography variant="body1">{state}</Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography variant="subtitle1">Zip Code:</Typography>
-            <Typography variant="body1">{zipCode}</Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography variant="subtitle1">Country:</Typography>
-            <Typography variant="body1">{country}</Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography variant="subtitle1">Bank Account Number:</Typography>
-            <Typography variant="body1">{bankAccountNumber}</Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography variant="subtitle1">IFSC Code:</Typography>
-            <Typography variant="body1">{ifscCode}</Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography variant="subtitle1">Customer ID:</Typography>
-            <Typography variant="body1">{customerId}</Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Button variant="outlined" onClick={handleClose}>
-              Close
-            </Button>
-          </Grid>
         </Grid>
+        <Box
+          style={{
+            overflowY: "auto",
+            maxHeight: "76vh",
+          }}
+        >
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <Typography variant="subtitle1">Name:</Typography>
+              <Typography variant="body1">{name}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="subtitle1">Email:</Typography>
+              <Typography variant="body1">{email}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="subtitle1">Role:</Typography>
+              <Typography variant="body1">{role}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="subtitle1">Mobile:</Typography>
+              <Typography variant="body1">{mobile}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="subtitle1">Identity Proof Image:</Typography>
+              <Typography variant="body1">{identityProofImageUri}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="subtitle1">Address Line 1:</Typography>
+              <Typography variant="body1">{addressLine1}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="subtitle1">Landmark:</Typography>
+              <Typography variant="body1">{landmark}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="subtitle1">City:</Typography>
+              <Typography variant="body1">{city}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="subtitle1">State:</Typography>
+              <Typography variant="body1">{state}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="subtitle1">Zip Code:</Typography>
+              <Typography variant="body1">{zipCode}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="subtitle1">Country:</Typography>
+              <Typography variant="body1">{country}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="subtitle1">Bank Account Number:</Typography>
+              <Typography variant="body1">{bankAccountNumber}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="subtitle1">IFSC Code:</Typography>
+              <Typography variant="body1">{ifscCode}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="subtitle1">Customer ID:</Typography>
+              <Typography variant="body1">{customerId}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Button variant="outlined" onClick={handleClose}>
+                Close
+              </Button>
+            </Grid>
+          </Grid>
+        </Box>
       </Box>
     </Modal>
   );

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Typography } from "@mui/material";
 
 import { getUsers } from "../../api/users";
 import Table from "../../components/table";
@@ -14,8 +15,19 @@ const Index = () => {
       .catch((err) => console.log(err));
   }, []);
   return (
-    <div>
-      <h2> User managment </h2>
+    <div
+      style={{
+        padding: 2,
+      }}
+    >
+      <Typography
+        variant="h5"
+        sx={{
+          marginBottom: 2,
+        }}
+      >
+        User Management
+      </Typography>
       <Table data={allUsers} />
     </div>
   );

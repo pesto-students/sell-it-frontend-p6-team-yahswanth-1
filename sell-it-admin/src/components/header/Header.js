@@ -83,7 +83,13 @@ export const Header = () => {
   const pid = openProfile ? "profile" : undefined;
   return (
     <div className="header">
-      <div role="button" onClick={showProfile}>
+      <div
+        role="button"
+        style={{
+          marginLeft: 12,
+        }}
+        onClick={showProfile}
+      >
         <Profile />
       </div>
       <Link to={"/"}>

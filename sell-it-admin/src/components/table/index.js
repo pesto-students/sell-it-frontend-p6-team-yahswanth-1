@@ -16,18 +16,19 @@ import { getUserById } from "../../api/users";
 import { UserDetailsModal } from "../modal/UserDetailsModal";
 const columns = [
   { id: "name", label: "Name", minWidth: 170 },
+  { id: "mobile", label: "Phone No", minWidth: 100 },
   { id: "email", label: "Email", minWidth: 100 },
-  { id: "createdAt", label: "Created", minWidth: 100 },
-  { id: "details", label: "View Details", minWidth: 100 },
+  { id: "createdAt", label: "Joined on", minWidth: 60 },
+  { id: "details", label: "View Details", minWidth: 60 },
   {
     id: "block",
     label: "Block/Unblock",
-    minWidth: 170,
+    minWidth: 60,
   },
 ];
 
-function createData(name, email, createdAt, block, details) {
-  return { name, email, block, createdAt, details };
+function createData(name, mobile, email, createdAt, block, details) {
+  return { name, mobile, email, block, createdAt, details };
 }
 
 export default function StickyHeadTable(props) {
@@ -69,7 +70,8 @@ export default function StickyHeadTable(props) {
 
   const rows = data.map((user) =>
     createData(
-      user.accountHolderName,
+      user.name,
+      user?.mobile,
       user.email,
       new Date(user.createdAt).toLocaleString(),
       <Button
