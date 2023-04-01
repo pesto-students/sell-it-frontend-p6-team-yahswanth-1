@@ -3,6 +3,7 @@ import { Typography } from "@mui/material";
 
 import { getUsers } from "../../api/users";
 import Table from "../../components/table";
+import { Title } from "../../components/reusable/Title";
 
 const Index = () => {
   const [allUsers, setAllUsers] = useState([]);
@@ -20,14 +21,7 @@ const Index = () => {
         padding: 2,
       }}
     >
-      <Typography
-        variant="h5"
-        sx={{
-          marginBottom: 2,
-        }}
-      >
-        User Management
-      </Typography>
+      <Title text="User managment" />
       <Table data={allUsers} />
     </div>
   );

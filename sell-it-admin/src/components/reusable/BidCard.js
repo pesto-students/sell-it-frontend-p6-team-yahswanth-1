@@ -29,7 +29,7 @@ export default function BidCard({
     );
   };
   return (
-    <Card sx={{ maxWidth: 460 }}>
+    <Card sx={{ maxWidth: 460, backgroundColor: "#DBE4C6" }} elevation={2}>
       <CardHeader avatar={<User />} title={name} subheader={category} />
       <CardMedia component="img" alt={name} height="140" image={image} />
       <CardContent>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
+import { ThemeProvider } from "@mui/material";
 
 import "./App.css";
 import Layout from "./pages/Layout";
@@ -14,6 +15,7 @@ import { BlindFooter } from "./components/footer/BlindFooter";
 import PrivateRoute from "./routes";
 import CategoryManagmentPage from "./pages/category-managment";
 import BidDetails from "./pages/bid-managment/BidDetails";
+import { theme } from "./theme";
 
 const Home = () => {
   return (
@@ -109,30 +111,32 @@ function App() {
     }
   }, []);
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />}></Route>
-        <Route exact path="/" element={<PrivateRoute isLoggedIn={login} />}>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/user-managment" element={<UserManagment />}></Route>
-          <Route path="/dashboard" element={<Dashboard />}></Route>
-          <Route path="/bid-managment" element={<BidManagment />}></Route>
-          <Route
-            path="/user-details/:userId"
-            element={<BidManagment />}
-          ></Route>
-          <Route
-            path="/bid-details/:bidId"
-            element={<BidDetailsPage />}
-          ></Route>
-          <Route
-            path="/category-managment"
-            element={<CategoryManagment />}
-          ></Route>
-        </Route>
-      </Routes>
-      <Toaster />
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />}></Route>
+          <Route exact path="/" element={<PrivateRoute isLoggedIn={login} />}>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/user-managment" element={<UserManagment />}></Route>
+            <Route path="/dashboard" element={<Dashboard />}></Route>
+            <Route path="/bid-managment" element={<BidManagment />}></Route>
+            <Route
+              path="/user-details/:userId"
+              element={<BidManagment />}
+            ></Route>
+            <Route
+              path="/bid-details/:bidId"
+              element={<BidDetailsPage />}
+            ></Route>
+            <Route
+              path="/category-managment"
+              element={<CategoryManagment />}
+            ></Route>
+          </Route>
+        </Routes>
+        <Toaster />
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

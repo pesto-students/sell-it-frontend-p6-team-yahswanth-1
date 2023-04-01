@@ -77,6 +77,8 @@ a {
   padding: 12px;
   border-radius: 14px;
   width: 80%;
+  overflow-y: auto;
+  max-height: 80vh;
 }
 .content-area {
   display: flex;

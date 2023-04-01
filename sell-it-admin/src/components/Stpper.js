@@ -4,30 +4,29 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Typography from "@mui/material/Typography";
+import { bidStatus } from "../Constants";
 
 export default function HorizontalStepperWithError(props) {
-  const isStepFailed = (step) => {
-    return step === 1;
-  };
-
   return (
-    <Box sx={{ width: "100%" }}>
-      <Stepper activeStep={1}>
+    <Box sx={{ width: "100%", overflowX: "auto" }}>
+      <Stepper activeStep={props?.history?.length}>
         {props.history.map((label, index) => {
-          const labelProps = {};
-          if (isStepFailed(index)) {
-            labelProps.optional = (
-              <Typography variant="caption" color="error">
-                Alert message
-              </Typography>
-            );
-
-            labelProps.error = true;
-          }
-
           return (
             <Step key={label._id}>
-              <StepLabel {...labelProps}>{label._id}</StepLabel>
+              <StepLabel>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  {bidStatus[label?.bidStatus]}
+
+                  <Typography variant="body2" color="gray">
+                    {new Date(label?.updatedAt).toLocaleString()}
+                  </Typography>
+                </Box>
+              </StepLabel>
             </Step>
           );
         })}

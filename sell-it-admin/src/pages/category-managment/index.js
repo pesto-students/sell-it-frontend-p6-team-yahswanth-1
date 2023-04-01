@@ -8,6 +8,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { Title } from "../../components/reusable/Title";
 
 const CategoryManagmentPage = () => {
   const [allCategories, setAllCategories] = useState([]);
@@ -36,7 +37,7 @@ const CategoryManagmentPage = () => {
   return (
     <>
       <div>
-        <Typography>All Categories</Typography>
+        <Title text="Category managment" />
 
         <List list={allCategories} />
         {/* <Button variant="contained" onClick={handleClickOpen}>

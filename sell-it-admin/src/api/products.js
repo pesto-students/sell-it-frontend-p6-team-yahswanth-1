@@ -44,3 +44,14 @@ export const getProductById = async (id) => {
   });
   return response;
 };
+
+export const addNewBid = async (body) => {
+  const response = await client.post(`/admin/products/bid`, body, {
+    headers: {
+      accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      ...authHead,
+    },
+  });
+  return response;
+};

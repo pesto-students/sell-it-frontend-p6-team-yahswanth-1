@@ -9,6 +9,7 @@ import { Grid } from "@mui/material";
 import BidManagmentCard from "../../components/reusable/BidManagmentCard";
 import { getAllProducts } from "../../api/products";
 import NoBidsFound from "./NoBidsFound";
+import { Title } from "../../components/reusable/Title";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -65,7 +66,7 @@ const Index = () => {
 
   return (
     <div>
-      <Typography variant="h5">Bid Management</Typography>
+      <Title text="Bid Management" />
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
