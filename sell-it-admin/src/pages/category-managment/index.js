@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { getCategoryListing } from "../../api/products";
 import List from "../../components/reusable/List";
-import { Typography, Button, Input } from "@mui/material";
+import { Typography, Button, Input, Skeleton, Box } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -14,6 +14,7 @@ const CategoryManagmentPage = () => {
   const [allCategories, setAllCategories] = useState([]);
   const [open, setOpen] = useState(false);
   const [categoryName, setCategoryName] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -23,11 +24,13 @@ const CategoryManagmentPage = () => {
     setOpen(false);
   };
   useEffect(() => {
+    setLoading(true);
     getCategoryListing()
       .then((res) => {
         setAllCategories(res.data?.response?.categories);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   }, []);
 
   const onChangeCategoryName = (e) => {
@@ -38,8 +41,18 @@ const CategoryManagmentPage = () => {
     <>
       <div>
         <Title text="Category managment" />
+        {loading ? (
+          <Box>
+            <Skeleton animation="wave" width={200} height={50} />
+            <Skeleton animation="wave" width={200} height={50} />
+            <Skeleton animation="wave" width={200} height={50} />
+            <Skeleton animation="wave" width={200} height={50} />
+            <Skeleton animation="wave" width={200} height={50} />
+          </Box>
+        ) : (
+          <List list={allCategories} />
+        )}
 
-        <List list={allCategories} />
         {/* <Button variant="contained" onClick={handleClickOpen}>
           Add new category
         </Button> */}

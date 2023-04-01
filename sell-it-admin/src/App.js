@@ -115,7 +115,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />}></Route>
-          <Route exact path="/" element={<PrivateRoute isLoggedIn={login} />}>
+          <Route element={<PrivateRoute isLoggedIn={login} />}>
             <Route exact path="/" element={<Home />} />
             <Route path="/user-managment" element={<UserManagment />}></Route>
             <Route path="/dashboard" element={<Dashboard />}></Route>

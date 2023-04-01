@@ -5,6 +5,8 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Grid } from "@mui/material";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import BidManagmentCard from "../../components/reusable/BidManagmentCard";
 import { getAllProducts } from "../../api/products";
@@ -47,6 +49,13 @@ function a11yProps(index) {
 const Index = () => {
   const [value, setValue] = useState(0);
   const [allProducts, setAllProducts] = useState([]);
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleToggle = () => {
+    setOpen(!open);
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -56,12 +65,18 @@ const Index = () => {
     return allProducts.filter((f) => f.orderStatus === type);
   };
 
-  useEffect(() => {
+  const getProucts = () => {
+    setOpen(true);
     getAllProducts()
       .then((res) => {
         setAllProducts(res.data?.response?.products?.results);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setOpen(false));
+  };
+
+  useEffect(() => {
+    getProucts();
   }, []);
 
   return (
@@ -195,6 +210,13 @@ const Index = () => {
           </Grid>
         </Box>
       </TabPanel>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+        onClick={handleClose}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 };

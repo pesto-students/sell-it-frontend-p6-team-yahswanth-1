@@ -11,8 +11,10 @@ import {
   Dialog,
   DialogTitle,
   FormGroup,
+  TextField,
 } from "@mui/material";
 import PropTypes from "prop-types";
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 
 import { getProductById } from "../../api/products";
 import ImageSlider from "../../components/reusable/Stepper";
@@ -27,6 +29,7 @@ import { Title } from "../../components/reusable/Title";
 function SimpleDialog(props) {
   const { onClose, onBidSubmit, open } = props;
   const [val, setVal] = useState("");
+
   const handleClose = () => {
     onClose();
   };
@@ -44,11 +47,16 @@ function SimpleDialog(props) {
         padding: 4,
       }}
     >
-      <DialogTitle>Set backup account</DialogTitle>
-      <Box>
+      <DialogTitle>New Bid</DialogTitle>
+      <Box
+        sx={{
+          paddingX: 4,
+          marginY: 2,
+        }}
+      >
         <FormGroup>
-          <Label> New value </Label>
-          <Input
+          <TextField
+            label="New price"
             type="number"
             value={val}
             onChange={(e) => setVal(e.target.value)}
@@ -56,7 +64,11 @@ function SimpleDialog(props) {
         </FormGroup>
       </Box>
       <DialogActions>
-        <Button variant="contained" onClick={onSubmit}>
+        <Button
+          variant="contained"
+          onClick={onSubmit}
+          disabled={!val || val.length === 0}
+        >
           Submit bid
         </Button>
       </DialogActions>
@@ -145,7 +157,12 @@ const BidDetails = () => {
                     : ""}
                 </Typography>
               </Box>
-              <Button variant="contained" onClick={suggestBid}>
+              <Button
+                endIcon={<LocalOfferIcon />}
+                variant="contained"
+                onClick={suggestBid}
+                size="small"
+              >
                 Suggest a new bid
               </Button>
             </Grid>
@@ -161,7 +178,12 @@ const BidDetails = () => {
               {images.length > 0 && <ImageSlider images={images} />}
             </Grid>
             <Grid item xs={6}>
-              {details?.description}
+              <Box>Brand: {details?.brand}</Box>
+              <Box>
+                Description :<p>{details?.description}</p>
+              </Box>
+              <Box>Pickup Address : {details?.pickupAddress}</Box>
+              <Box>Purchased Year : {details?.purchasedYear}</Box>
             </Grid>
             <Grid
               sx={{

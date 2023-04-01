@@ -11,7 +11,12 @@ import { Link } from "react-router-dom";
 
 const BidManagmentCard = ({ url, title, type, description, id, createdAt }) => {
   return (
-    <Card>
+    <Card
+      sx={{
+        backgroundColor: "#DBE4C6",
+      }}
+      elevation={2}
+    >
       <CardHeader subheader={createdAt} title={title} />
       <CardContent>
         <CardMedia
