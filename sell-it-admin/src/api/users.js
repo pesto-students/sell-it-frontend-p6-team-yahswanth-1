@@ -1,8 +1,8 @@
 import { client } from "./client";
 import authHeader from "./authServices";
 const authHead = authHeader();
-export const getUsers = async (email, passsord) => {
-  const response = await client.get("/users", {
+export const getUsers = async (pageNo) => {
+  const response = await client.get(`/users/?page=${pageNo}`, {
     headers: {
       accept: "application/json",
       "Access-Control-Allow-Origin": "*",

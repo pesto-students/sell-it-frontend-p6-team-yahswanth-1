@@ -43,6 +43,7 @@ export default function StickyHeadTable(props) {
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
+    props.onPageChange(newPage);
   };
 
   const handleChangeRowsPerPage = (event) => {
@@ -105,6 +106,7 @@ export default function StickyHeadTable(props) {
       })
       .catch((err) => console.log(err));
   };
+
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
   return (
@@ -160,7 +162,7 @@ export default function StickyHeadTable(props) {
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
           component="div"
-          count={rows.length}
+          count={props?.totalResult}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}

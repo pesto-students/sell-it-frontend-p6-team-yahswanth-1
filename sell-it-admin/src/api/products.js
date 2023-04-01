@@ -1,8 +1,8 @@
 import { client } from "./client";
 import authHeader from "./authServices";
 const authHead = authHeader();
-export const pendingProducts = async () => {
-  const response = await client.get("/products/pending", {
+export const pendingProducts = async (pageNo) => {
+  const response = await client.get(`/products/pending?page=${pageNo}`, {
     headers: {
       accept: "application/json",
       "Access-Control-Allow-Origin": "*",
@@ -23,14 +23,17 @@ export const getCategoryListing = async () => {
   return response;
 };
 
-export const getAllProducts = async () => {
-  const response = await client.get("/products", {
-    headers: {
-      accept: "application/json",
-      "Access-Control-Allow-Origin": "*",
-      ...authHead,
-    },
-  });
+export const getAllProducts = async (pageNo, bidStatus) => {
+  const response = await client.get(
+    `/products?bidStatus=${bidStatus}&page=${pageNo}`,
+    {
+      headers: {
+        accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+        ...authHead,
+      },
+    }
+  );
   return response;
 };
 

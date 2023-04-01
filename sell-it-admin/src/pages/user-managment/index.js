@@ -16,21 +16,30 @@ const EmptyUsers = () => {
 const Index = () => {
   const [allUsers, setAllUsers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [totalResult, setTotalResult] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
 
-  const getAllUsers = () => {
+  const getAllUsers = (pageNo) => {
     setLoading(true);
-    getUsers()
+    getUsers(pageNo)
       .then((res) => {
         console.log(res);
         setAllUsers(res.data?.response?.users?.results);
+        setTotalResult(res.data?.response?.users?.totalResults);
+        setTotalPage(res.data?.response?.users?.totalPages);
       })
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
   };
 
   useEffect(() => {
-    getAllUsers();
+    getAllUsers(1);
   }, []);
+
+  const onPageChange = (no) => {
+    getAllUsers(no);
+  };
+
   return (
     <div
       style={{
@@ -38,7 +47,16 @@ const Index = () => {
       }}
     >
       <Title text="User managment" />
-      {loading ? <EmptyUsers /> : <Table data={allUsers} />}
+      {loading ? (
+        <EmptyUsers />
+      ) : (
+        <Table
+          data={allUsers}
+          totalResult={totalResult}
+          totalPage={totalPage}
+          onPageChange={onPageChange}
+        />
+      )}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import Table from "../../components/table";
 import { pendingProducts } from "../../api/products";
-import { Typography } from "@mui/material";
+import { Typography, Pagination } from "@mui/material";
 import BidCard from "../../components/reusable/BidCard";
 import { Grid, Box, Skeleton } from "@mui/material";
 import { Title } from "../../components/reusable/Title";
@@ -11,16 +11,28 @@ import Empty from "../../assets/img/undraw_Sunlight.png";
 const Home = () => {
   const [pendingBids, setPendingBids] = useState([]);
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
+  const [totalPage, setTotalPage] = useState(1);
+
+  const pendingProductByPage = (no) => {
     setLoading(true);
-    pendingProducts()
+    pendingProducts(no)
       .then((res) => {
-        console.log(res.data.response.products.results);
+        console.log(res.data.response.products);
         setPendingBids(res.data?.response?.products?.results);
+        setTotalPage(res?.data?.response?.products?.totalPages);
       })
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    pendingProductByPage(1);
   }, []);
+
+  const onPageChange = (e, pageNo) => {
+    pendingProductByPage(pageNo);
+  };
+
   return (
     <div>
       <Title text="Pending bids" />
@@ -91,6 +103,18 @@ const Home = () => {
           </Box>
         )}
       </div>
+      <Box
+        sx={{
+          textAlign: "center",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          mt: 2,
+          mb: 2,
+        }}
+      >
+        <Pagination count={totalPage} color="primary" onChange={onPageChange} />
+      </Box>
     </div>
   );
 };
