@@ -58,3 +58,14 @@ export const addNewBid = async (body) => {
   });
   return response;
 };
+
+export const updateBid = async (body) => {
+  const response = await client.put(`/admin/products/bid`, body, {
+    headers: {
+      accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      ...authHead,
+    },
+  });
+  return response;
+};

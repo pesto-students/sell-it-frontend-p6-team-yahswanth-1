@@ -49,29 +49,42 @@ export default function VerticalTabs(props) {
   return (
     <Box
       sx={{
-        flexGrow: 1,
         bgcolor: "background.paper",
         display: "flex",
         height: 224,
+        width: "100%",
+        justifyContent: "space-between",
       }}
     >
-      <Tabs
-        orientation="vertical"
-        variant="scrollable"
-        value={value}
-        onChange={handleChange}
-        aria-label="Vertical tabs example"
-        sx={{ borderRight: 1, borderColor: "divider", width: "50%" }}
+      <Box
+        sx={{
+          width: "25%",
+        }}
+      >
+        <Tabs
+          orientation="vertical"
+          variant="scrollable"
+          value={value}
+          onChange={handleChange}
+          aria-label="Vertical tabs example"
+          sx={{ borderRight: 1, borderColor: "divider", width: "50%" }}
+        >
+          {tabs.map((tab, tabId) => (
+            <Tab label={tab?.label} key={tabId} {...a11yProps(tabId)} />
+          ))}
+        </Tabs>
+      </Box>
+      <Box
+        sx={{
+          width: "80%",
+        }}
       >
         {tabs.map((tab, tabId) => (
-          <Tab label={tab?.label} key={tabId} {...a11yProps(tabId)} />
+          <TabPanel value={value} key={tabId} index={tabId}>
+            {tab?.component}
+          </TabPanel>
         ))}
-      </Tabs>
-      {tabs.map((tab, tabId) => (
-        <TabPanel value={value} key={tabId} index={tabId}>
-          {tab?.component}
-        </TabPanel>
-      ))}
+      </Box>
     </Box>
   );
 }
