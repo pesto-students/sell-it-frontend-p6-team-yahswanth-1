@@ -8,7 +8,7 @@ import Checkbox from "@mui/material/Checkbox";
 import Avatar from "@mui/material/Avatar";
 import { ViewKanbanRounded } from "@mui/icons-material";
 
-export default function CheckboxListSecondary({ list }) {
+export default function ListComponent({ list }) {
   const [checked, setChecked] = React.useState([1]);
 
   const handleToggle = (value) => () => {

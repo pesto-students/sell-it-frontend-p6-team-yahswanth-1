@@ -35,7 +35,7 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 //   },
 // ];
 
-function SwipeableTextMobileStepper({ images }) {
+function ImageStpper({ images }) {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = images.length;
@@ -125,4 +125,4 @@ function SwipeableTextMobileStepper({ images }) {
   );
 }
 
-export default SwipeableTextMobileStepper;
+export default ImageStpper;
