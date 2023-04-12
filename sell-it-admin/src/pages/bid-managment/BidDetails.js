@@ -21,10 +21,11 @@ import ImageSlider from "../../components/reusable/Stepper";
 import Stepper from "../../components/Stpper";
 
 import NotFound from "../../assets/img/no-document.png";
-import { addNewBid } from "../../api/products";
+import { addNewBid, updateBid } from "../../api/products";
 import { Label } from "@mui/icons-material";
 import { toast } from "react-hot-toast";
 import { Title } from "../../components/reusable/Title";
+import { productBidStatus } from "../../Constants";
 
 function SimpleDialog(props) {
   const { onClose, onBidSubmit, open } = props;
@@ -130,6 +131,69 @@ const BidDetails = () => {
         imgPath: i.uri,
       }))
     : [];
+  const acceptBid = () => {
+    const body = {
+      bidId: details?._id,
+      status: productBidStatus["ACCEPTED"],
+      offeredAmount: 100,
+      notes: "string",
+    };
+    updateBid(body)
+      .then((res) => {
+        toast.success("Bid accepted");
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const rejectBid = () => {
+    const body = {
+      bidId: details?._id,
+      status: productBidStatus["REJECTED"],
+      offeredAmount: 100,
+      notes: "string",
+    };
+    updateBid(body)
+      .then((res) => {
+        toast.success("Bid rejected");
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const BidSuggestArea = () => {
+    const userData = JSON.parse(localStorage.getItem("admin"));
+    const userId = userData?.user?._id;
+    if (details?.bidHistory?.length === 0) {
+      return (
+        <Button
+          endIcon={<LocalOfferIcon />}
+          variant="contained"
+          onClick={suggestBid}
+          size="small"
+        >
+          Suggest a new bid
+        </Button>
+      );
+    } else if (
+      details?.bidHistory?.length > 1 &&
+      details?.createdBy === userId
+    ) {
+      return (
+        <Box>
+          <Button variant="contained" color="success" onClick={acceptBid}>
+            Accept
+          </Button>
+          <Button variant="outlined" color="danger" onClick={rejectBid}>
+            Reject
+          </Button>
+          <Button variant="contained" color="primary" onClick={suggestBid}>
+            Modify
+          </Button>
+        </Box>
+      );
+    } else {
+      return <></>;
+    }
+  };
 
   return (
     <div>
@@ -157,14 +221,9 @@ const BidDetails = () => {
                     : ""}
                 </Typography>
               </Box>
-              <Button
-                endIcon={<LocalOfferIcon />}
-                variant="contained"
-                onClick={suggestBid}
-                size="small"
-              >
-                Suggest a new bid
-              </Button>
+              <Box>
+                <BidSuggestArea />
+              </Box>
             </Grid>
           </Grid>
         </Box>

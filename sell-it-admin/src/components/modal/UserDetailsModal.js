@@ -13,7 +13,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 600,
+  width: 800,
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
@@ -70,10 +70,7 @@ export const UserDetailsModal = ({ open, handleClose, data }) => {
               <Typography variant="subtitle1">Mobile:</Typography>
               <Typography variant="body1">{mobile}</Typography>
             </Grid>
-            <Grid item xs={6}>
-              <Typography variant="subtitle1">Identity Proof Image:</Typography>
-              <Typography variant="body1">{identityProofImageUri}</Typography>
-            </Grid>
+
             <Grid item xs={6}>
               <Typography variant="subtitle1">Address Line 1:</Typography>
               <Typography variant="body1">{addressLine1}</Typography>
@@ -98,6 +95,30 @@ export const UserDetailsModal = ({ open, handleClose, data }) => {
               <Typography variant="subtitle1">Country:</Typography>
               <Typography variant="body1">{country}</Typography>
             </Grid>
+
+            <Grid item xs={6}>
+              <Typography variant="subtitle1">Customer ID:</Typography>
+              <Typography variant="body1">{customerId}</Typography>
+            </Grid>
+            <Grid item xs={12}>
+              Identity Proof Image:
+              <img
+                style={{
+                  width: "20%",
+                }}
+                alt="proof"
+                src={identityProofImageUri}
+              />
+            </Grid>
+          </Grid>
+        </Box>
+      ),
+    },
+    {
+      label: "Bank details",
+      component: (
+        <>
+          <Grid container>
             <Grid item xs={6}>
               <Typography variant="subtitle1">Bank Account Number:</Typography>
               <Typography variant="body1">{bankAccountNumber}</Typography>
@@ -107,16 +128,16 @@ export const UserDetailsModal = ({ open, handleClose, data }) => {
               <Typography variant="body1">{ifscCode}</Typography>
             </Grid>
             <Grid item xs={6}>
-              <Typography variant="subtitle1">Customer ID:</Typography>
-              <Typography variant="body1">{customerId}</Typography>
+              <Typography variant="subtitle1">Account holder name:</Typography>
+              <Typography variant="body1">{accountHolderName}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="subtitle1">UPI:</Typography>
+              <Typography variant="body1">{UPI}</Typography>
             </Grid>
           </Grid>
-        </Box>
+        </>
       ),
-    },
-    {
-      label: "Bank details",
-      component: <></>,
     },
   ];
 
@@ -128,14 +149,13 @@ export const UserDetailsModal = ({ open, handleClose, data }) => {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <Typography variant="h6" gutterBottom>
-              User Details
-            </Typography>
-          </Grid>
-        </Grid>
-        <VerticalTabs tabs={tabs} />
+        <Typography variant="h6" gutterBottom>
+          User Details
+        </Typography>
+
+        <Box>
+          <VerticalTabs tabs={tabs} />
+        </Box>
       </Box>
     </Modal>
   );
