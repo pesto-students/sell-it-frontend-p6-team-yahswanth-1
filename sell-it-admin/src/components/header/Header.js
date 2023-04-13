@@ -202,8 +202,8 @@ export const Header = () => {
       <Link to={"/"}>
         <img src={Logo} alt="logo" className="logo" />
       </Link>
-
-      <Search
+      <Box></Box>
+      {/* <Search
         sx={{
           marginLeft: 10,
         }}
@@ -219,7 +219,7 @@ export const Header = () => {
           placeholder="Search…"
           inputProps={{ "aria-label": "search" }}
         />
-      </Search>
+      </Search> */}
       <div className="notification">
         <Badge
           badgeContent={unReadNotificationCount}
